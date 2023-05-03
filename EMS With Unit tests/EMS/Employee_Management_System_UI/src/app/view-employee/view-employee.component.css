@@ -1,0 +1,12 @@
+.baclBtnDiv {
+    text-align: right;
+}
+
+.backBtn {
+    font-size: x-large;
+    font-weight: bold;
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 1px 12px 5px 12px;
+    vertical-align: center;
+}

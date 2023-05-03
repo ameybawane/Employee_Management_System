@@ -1,0 +1,84 @@
+<div class="container my-5">
+    <h1 class="mb-3">Update Employee</h1>
+    <div class="row">
+        <div class="col-6">
+            <form [formGroup]="updateEmpForm" (ngSubmit)="UpdateEmployee(updateEmpForm.value)" class="add"
+                *ngIf="updateEmpForm">
+                <div class="mb-3">
+                    <label for="Id">Id</label>
+                    <input type="text" formControlName="id" class="form-control" id="id" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" formControlName="firstName" class="form-control" id="firstName"
+                        placeholder="First Name (required)"
+                        [ngClass]="{'is-invalid': (updateEmpForm.get('firstName')?.touched || updateEmpForm.get('firstName')?.dirty) && !updateEmpForm.get('firstName')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="updateEmpForm.get('firstName')?.errors?.['minlength']">First name length can not be
+                            less than 3</span>
+                        <span *ngIf="updateEmpForm.get('firstName')?.errors?.['maxlength']">First name length can not be
+                            more than 100 character.</span>
+                        <span *ngIf="updateEmpForm.get('firstName')?.errors?.['required']">Field or property Name cannot
+                            be blank</span>
+
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" formControlName="lastName" class="form-control" id="lastName"
+                        placeholder="Last Name (required)"
+                        [ngClass]="{'is-invalid': (updateEmpForm.get('lastName')?.touched || updateEmpForm.get('lastName')?.dirty) && !updateEmpForm.get('lastName')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="updateEmpForm.get('lastName')?.errors?.['minlength']">Last name length can not be
+                            less than 3</span>
+                        <span *ngIf="updateEmpForm.get('lastName')?.errors?.['maxlength']">Last name length can not be
+                            more than 100 character.</span>
+                        <span *ngIf="updateEmpForm.get('lastName')?.errors?.['required']">Field or property Name cannot
+                            be blank</span>
+
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" formControlName="email" class="form-control" id="email"
+                        placeholder="Email (required)"
+                        [ngClass]="{'is-invalid': (updateEmpForm.get('email')?.touched || updateEmpForm.get('email')?.dirty) && !updateEmpForm.get('email')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="updateEmpForm.get('email')?.errors?.['required']">Please
+                            enter your email!</span>
+                        <span *ngIf="updateEmpForm.get('email')?.errors?.['email']">Please enter
+                            valid email!</span>
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" formControlName="dateOfBirth" class="form-control" id="dateOfBirth"
+                        placeholder="Date of Birth (required)"
+                        [ngClass]="{'is-invalid': (updateEmpForm.get('dateOfBirth')?.touched || updateEmpForm.get('dateOfBirth')?.dirty) && !updateEmpForm.get('dateOfBirth')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="updateEmpForm.get('dateOfBirth')?.errors?.['required']">Please
+                            enter your date of birth!</span>
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="IsActive">Active</label>
+                    <select class="form-control" formControlName="isActive" name="active">
+                        <option *ngFor="let status of isActive" [ngValue]="status.isActive">
+                            {{status.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="isactive">Department</label>
+                    <select formControlName="departmentId" name="Service" class="form-control">
+                        <option>Select Services</option>
+                        <option [value]="serv.id" *ngFor="let serv of AllDepartmentId">
+                            {{ serv.name}}
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!updateEmpForm.valid">Update</button>
+            </form>
+        </div>
+    </div>
+</div>

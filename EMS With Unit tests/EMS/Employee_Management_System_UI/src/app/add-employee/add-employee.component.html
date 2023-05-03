@@ -1,0 +1,77 @@
+<div class="container my-5">
+    <h1 class="mb-3">Add a New Employee</h1>
+    <div class="row">
+        <div class="col-6">
+            <form [formGroup]="addEmpForm" (ngSubmit)="save(addEmpForm.value)">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" formControlName="firstName" class="form-control" id="firstName"
+                        placeholder="First Name (required)"
+                        [ngClass]="{'is-invalid': (addEmpForm.get('firstName')?.touched || addEmpForm.get('firstName')?.dirty) && !addEmpForm.get('firstName')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="addEmpForm.get('firstName')?.errors?.['minlength']">First name length can not be
+                            less than 3 character.</span>
+                        <span *ngIf="addEmpForm.get('firstName')?.errors?.['maxlength']">First name length can not be
+                            more than 100 character.</span>
+                        <span *ngIf="addEmpForm.get('firstName')?.errors?.['required']">First Name cannot be
+                            blank!</span>
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" formControlName="lastName" class="form-control" id="lastName"
+                        placeholder="Last Name (required)"
+                        [ngClass]="{'is-invalid': (addEmpForm.get('lastName')?.touched || addEmpForm.get('lastName')?.dirty) && !addEmpForm.get('lastName')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="addEmpForm.get('lastName')?.errors?.['minlength']">Last name length can not be
+                            less than 3 character.</span>
+                        <span *ngIf="addEmpForm.get('lastName')?.errors?.['maxlength']">Last name length can not be
+                            more than 100 character.</span>
+                        <span *ngIf="addEmpForm.get('lastName')?.errors?.['required']">Last Name cannot be
+                            blank!</span>
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" formControlName="email" class="form-control" id="email"
+                        placeholder="Email (required)"
+                        [ngClass]="{'is-invalid': (addEmpForm.get('email')?.touched || addEmpForm.get('email')?.dirty) && !addEmpForm.get('email')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="addEmpForm.get('email')?.errors?.['required']">Please
+                            enter your email!</span>
+                        <span *ngIf="addEmpForm.get('email')?.errors?.['email']">Please enter
+                            valid email!</span>
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" formControlName="dateOfBirth" class="form-control" id="dateOfBirth"
+                        placeholder="Date of Birth (required)"
+                        [ngClass]="{'is-invalid': (addEmpForm.get('dateOfBirth')?.touched || addEmpForm.get('dateOfBirth')?.dirty) && !addEmpForm.get('dateOfBirth')?.valid}">
+                    <span class="invalid-feedback">
+                        <span *ngIf="addEmpForm.get('dateOfBirth')?.errors?.['required']">Please
+                            enter your date of birth!</span>
+                    </span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="IsActive">Active</label>
+                    <select class="form-control" formControlName="isActive" name="active">
+                        <option *ngFor="let status of isActive" [ngValue]="status.isActive">
+                            {{status.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="isactive">Department</label>
+                    <select formControlName="departmentId" name="Service" class="form-control">
+                        <option>Select Services</option>
+                        <option [value]="serv.id" *ngFor="let serv of AllDepartmentId">
+                            {{ serv.name}}
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!addEmpForm.valid">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
